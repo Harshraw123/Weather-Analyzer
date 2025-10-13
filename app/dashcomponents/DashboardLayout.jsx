@@ -1,4 +1,4 @@
-import { Cloud, Activity, Zap } from 'lucide-react';
+import { Cloud, Activity, Zap, TrendingUp } from 'lucide-react';
 
 export const DashboardLayout = ({ children }) => {
   return (
@@ -9,7 +9,7 @@ export const DashboardLayout = ({ children }) => {
           <div className="flex items-center gap-4">
             <div className="relative">
           
-              <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full animate-pulse" />
+             <TrendingUp className='text-emerald-500'/>
             </div>
             <div>
               <h1 className="text-2xl font-bold bg-gradient-to-r from-emerald-400 via-green-400 to-green-600 bg-clip-text text-transparent drop-shadow-md">
