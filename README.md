@@ -1,36 +1,107 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Weather Analyzer
 
-## Getting Started
+Weather Analyzer is a comprehensive Python project designed to analyze weather data efficiently and provide insights such as trends, predictions, and summaries. This project leverages both data science techniques and classic Data Structures and Algorithms (DSA) principles to ensure optimal performance when handling large datasets.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Ingests weather data from various sources (CSV, API, etc.)
+- Provides detailed data analyses: statistics, trends, and visualization
+- Fast querying of records using optimized DSA algorithms such as Binary Search
+- Plots results using popular libraries (optional: matplotlib/seaborn)
+- Clean, modular, and extensible codebase
+
+## Data Structures and Algorithms Used
+
+This project incorporates several foundational DSA techniques to make data analysis more efficient:
+
+### 1. Binary Search
+
+- **Purpose:** Quickly search for specific weather records (e.g., temperature on a given date) within sorted data.
+- **Implementation:** After sorting the dataset by date, binary search allows logarithmic time complexity (`O(log n)`) lookups instead of linear scans.
+- **Use Case Example:**
+  ```python
+  def binary_search(data, target_date):
+      left, right = 0, len(data) - 1
+      while left <= right:
+          mid = (left + right) // 2
+          if data[mid].date == target_date:
+              return data[mid]
+          elif data[mid].date < target_date:
+              left = mid + 1
+          else:
+              right = mid - 1
+      return None
+  ```
+
+### 2. Sorting Algorithms
+
+- **Purpose:** Organize weather data (e.g., by date, temperature, humidity) for efficient access and further analysis.
+- **Implementation:** Python’s built-in `sorted()` and `.sort()` methods (Timsort), but structure and code are written to be extensible for alternative custom sorters.
+
+### 3. Hashing (Dictionaries)
+
+- **Purpose:** Fast aggregation and lookup of weather records grouped by key (e.g., all data for a specific city or date).
+- **Implementation:** Python’s dictionary objects for constant time (`O(1)`) access.
+
+### 4. Searching & Filtering (Linear Scan)
+
+- **Purpose:** Extract subsets of data matching certain criteria (like temperatures above a threshold).
+- **Implementation:** List comprehensions, custom filter functions.
+
+### 5. (Optional) Additional DSA
+
+If handling time-series predictions, basic queue or stack structures can be used for windowing algorithms or recency filters.
+
+## How It Works
+
+1. **Load Data:** Import weather datasets (CSV, JSON, or via Web API).
+2. **Preprocess:** Clean, validate, and sort data as needed.
+3. **Analyze:**
+   - Use Binary Search to efficiently find records.
+   - Use hashing/dictionaries for aggregate analyses.
+   - Optional statistical and ML analyses for predictions.
+4. **Visualize:** Plot trends (temperature over time, etc.)
+
+## Example Usage
+
+```python
+from weather_analyzer import WeatherAnalyzer
+
+analyzer = WeatherAnalyzer('weather_data.csv')
+record = analyzer.find_by_date('2023-08-15')   # Uses binary search
+high_temps = analyzer.filter_by_temperature(min_temp=30) # Linear scan
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project Structure
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```
+weather_analyzer/
+│
+├── weather_analyzer.py    # Main analysis class (DSA methods here)
+├── data/                  # Sample weather datasets
+├── utils.py               # Helper functions, e.g., custom sorts
+├── README.md
+├── requirements.txt
+└── test/
+    └── test_weather_analyzer.py
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Installation
 
-## Learn More
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/Harshraw123/Weather-Analyzer.git
+   cd Weather-Analyzer
+   ```
+2. Install dependencies:
+   ```sh
+   pip install -r requirements.txt
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+## Contributing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Contributions are welcome! Please submit a pull request or open an issue for suggestions and improvements.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## License
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is licensed under the MIT License.
