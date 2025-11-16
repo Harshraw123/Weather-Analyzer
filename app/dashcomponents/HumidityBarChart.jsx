@@ -60,8 +60,15 @@ import {
               </linearGradient>
             </defs>
             <CartesianGrid strokeDasharray="3 3" stroke="white" opacity={0.2} />
-            <XAxis dataKey="date" stroke="gray-400" style={{ fontSize: '12px' }} />
-            <YAxis stroke="gray-400" style={{ fontSize: '12px' }} />
+<XAxis
+  dataKey="date"
+  stroke="#fff"
+  tick={{ fill: "#fff", fontSize: 12 }}
+/>
+<YAxis
+  stroke="#fff"
+  tick={{ fill: "#fff", fontSize: 12 }}
+/>
             <Tooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ paddingTop: '20px', fontSize: '14px' }} />
             <Bar
